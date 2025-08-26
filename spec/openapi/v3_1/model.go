@@ -1,9 +1,5 @@
 package v3_1
 
-import (
-	"encoding/json"
-)
-
 // OpenAPI represents the root OpenAPI 3.1 document
 type OpenAPI struct {
 	OpenAPI           string                 `json:"openapi" yaml:"openapi"`
@@ -398,64 +394,3 @@ type OAuthFlow struct {
 
 // SecurityRequirement lists the required security schemes to execute this operation
 type SecurityRequirement map[string][]string
-
-// Custom JSON marshaling/unmarshaling methods for handling extensions and references
-
-func (o *OpenAPI) MarshalJSON() ([]byte, error) {
-	type Alias OpenAPI
-	aux := struct {
-		*Alias
-	}{
-		Alias: (*Alias)(o),
-	}
-
-	b, err := json.Marshal(aux)
-	if err != nil {
-		return nil, err
-	}
-
-	if o.Extensions == nil {
-		return b, nil
-	}
-
-	var base map[string]interface{}
-	if err := json.Unmarshal(b, &base); err != nil {
-		return nil, err
-	}
-
-	for k, v := range o.Extensions {
-		base[k] = v
-	}
-
-	return json.Marshal(base)
-}
-
-func (p *ParameterRef) UnmarshalJSON(data []byte) error {
-	var ref struct {
-		Ref string `json:"$ref"`
-	}
-	if err := json.Unmarshal(data, &ref); err == nil && ref.Ref != "" {
-		p.Ref = &ref.Ref
-		return nil
-	}
-
-	var param Parameter
-	if err := json.Unmarshal(data, &param); err != nil {
-		return err
-	}
-	p.Value = &param
-	return nil
-}
-
-func (p *ParameterRef) MarshalJSON() ([]byte, error) {
-	if p.Ref != nil {
-		return json.Marshal(struct {
-			Ref string `json:"$ref"`
-		}{Ref: *p.Ref})
-	}
-	return json.Marshal(p.Value)
-}
-
-// Similar marshal/unmarshal methods would be needed for other *Ref types
-// (ResponseRef, RequestBodyRef, ExampleRef, HeaderRef, SecuritySchemeRef, LinkRef, CallbacksRef)
-// Following the same pattern as ParameterRef
