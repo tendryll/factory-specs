@@ -1,3 +1,3 @@
 # Factory Specs
 
-Contains the library of structs representing OpenAPI schemas.
+A library of structs representing OpenAPI schemas.
