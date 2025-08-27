@@ -1,4 +1,4 @@
-package v3_0
+package ver3_0
 
 // OpenAPI represents the root OpenAPI 3.0 document
 type OpenAPI struct {
