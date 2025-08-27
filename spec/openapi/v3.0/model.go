@@ -72,7 +72,7 @@ type Components struct {
 // Paths holds the relative paths to the individual endpoints
 type Paths struct {
 	Extensions map[string]interface{} `json:"-" yaml:",inline"`
-	Items      map[string]*PathItem   `json:"paths" yaml:",paths"`
+	Items      map[string]*PathItem   `json:"paths" yaml:"paths"`
 }
 
 // PathItem describes the operations available on a single path
