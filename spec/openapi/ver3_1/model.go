@@ -1,6 +1,18 @@
+// Code generated from OpenAPI v3.1.1 JSON Schema (v3.1.1.json). DO NOT EDIT.
+
 package ver3_1
 
-// OpenAPI represents the root OpenAPI 3.1 document
+//import (
+//	"time"
+//)
+
+// Callbacks - generated from $defs/callbacks
+
+// Document wraps the root OpenAPI struct generated from v3.1.1 schema.
+type Document struct {
+	Spec OpenAPI
+}
+
 type OpenAPI struct {
 	OpenAPI           string                 `json:"openapi" yaml:"openapi"`
 	Info              Info                   `json:"info" yaml:"info"`
@@ -15,382 +27,380 @@ type OpenAPI struct {
 	Extensions        map[string]interface{} `json:"-" yaml:",inline"`
 }
 
-// Info represents the metadata about the API
-type Info struct {
-	Title          string                 `json:"title" yaml:"title"`
-	Summary        *string                `json:"summary,omitempty" yaml:"summary,omitempty"`
-	Description    *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	TermsOfService *string                `json:"termsOfService,omitempty" yaml:"termsOfService,omitempty"`
-	Contact        *Contact               `json:"contact,omitempty" yaml:"contact,omitempty"`
-	License        *License               `json:"license,omitempty" yaml:"license,omitempty"`
-	Version        string                 `json:"version" yaml:"version"`
-	Extensions     map[string]interface{} `json:"-" yaml:",inline"`
+type Callbacks struct {
+	AdditionalProperties map[string]PathItem    `json:"-"`
+	Extensions           map[string]interface{} `json:"-"`
 }
 
-// Contact represents the contact information for the API
-type Contact struct {
-	Name       *string                `json:"name,omitempty" yaml:"name,omitempty"`
-	URL        *string                `json:"url,omitempty" yaml:"url,omitempty"`
-	Email      *string                `json:"email,omitempty" yaml:"email,omitempty"`
-	Extensions map[string]interface{} `json:"-" yaml:",inline"`
-}
+// CallbacksOrReference - fallback to interface{}
 
-// License represents the license information for the API
-type License struct {
-	Name       string                 `json:"name" yaml:"name"`
-	Identifier *string                `json:"identifier,omitempty" yaml:"identifier,omitempty"`
-	URL        *string                `json:"url,omitempty" yaml:"url,omitempty"`
-	Extensions map[string]interface{} `json:"-" yaml:",inline"`
-}
+type CallbacksOrReference interface{}
 
-// Server represents a server configuration
-type Server struct {
-	URL         string                     `json:"url" yaml:"url"`
-	Description *string                    `json:"description,omitempty" yaml:"description,omitempty"`
-	Variables   map[string]*ServerVariable `json:"variables,omitempty" yaml:"variables,omitempty"`
-	Extensions  map[string]interface{}     `json:"-" yaml:",inline"`
-}
+// Components - generated from $defs/components
 
-// ServerVariable represents a server variable for templating
-type ServerVariable struct {
-	Enum        []string               `json:"enum,omitempty" yaml:"enum,omitempty"`
-	Default     string                 `json:"default" yaml:"default"`
-	Description *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Extensions  map[string]interface{} `json:"-" yaml:",inline"`
-}
-
-// Components holds reusable objects for different aspects of the OAS
 type Components struct {
-	Schemas         map[string]*Schema            `json:"schemas,omitempty" yaml:"schemas,omitempty"`
-	Responses       map[string]*ResponseRef       `json:"responses,omitempty" yaml:"responses,omitempty"`
-	Parameters      map[string]*ParameterRef      `json:"parameters,omitempty" yaml:"parameters,omitempty"`
-	Examples        map[string]*ExampleRef        `json:"examples,omitempty" yaml:"examples,omitempty"`
-	RequestBodies   map[string]*RequestBodyRef    `json:"requestBodies,omitempty" yaml:"requestBodies,omitempty"`
-	Headers         map[string]*HeaderRef         `json:"headers,omitempty" yaml:"headers,omitempty"`
-	SecuritySchemes map[string]*SecuritySchemeRef `json:"securitySchemes,omitempty" yaml:"securitySchemes,omitempty"`
-	Links           map[string]*LinkRef           `json:"links,omitempty" yaml:"links,omitempty"`
-	Callbacks       map[string]*CallbacksRef      `json:"callbacks,omitempty" yaml:"callbacks,omitempty"`
-	PathItems       map[string]*PathItem          `json:"pathItems,omitempty" yaml:"pathItems,omitempty"`
-	Extensions      map[string]interface{}        `json:"-" yaml:",inline"`
+	Callbacks       map[string]CallbacksOrReference      `json:"callbacks,omitempty"`
+	Examples        map[string]ExampleOrReference        `json:"examples,omitempty"`
+	Headers         map[string]HeaderOrReference         `json:"headers,omitempty"`
+	Links           map[string]LinkOrReference           `json:"links,omitempty"`
+	Parameters      map[string]ParameterOrReference      `json:"parameters,omitempty"`
+	Pathitems       map[string]PathItem                  `json:"pathItems,omitempty"`
+	Requestbodies   map[string]RequestBodyOrReference    `json:"requestBodies,omitempty"`
+	Responses       map[string]ResponseOrReference       `json:"responses,omitempty"`
+	Schemas         map[string]interface{}               `json:"schemas,omitempty"`
+	Securityschemes map[string]SecuritySchemeOrReference `json:"securitySchemes,omitempty"`
+	Extensions      map[string]interface{}               `json:"-"`
 }
 
-// Paths holds the relative paths to the individual endpoints
-type Paths struct {
-	Extensions map[string]interface{} `json:"-" yaml:",inline"`
-	Paths      map[string]*PathItem   `json:"-" yaml:",inline"`
+// Contact - generated from $defs/contact
+
+type Contact struct {
+	Email      *string                `json:"email,omitempty"`
+	Name       *string                `json:"name,omitempty"`
+	Url        *string                `json:"url,omitempty"`
+	Extensions map[string]interface{} `json:"-"`
 }
 
-// PathItem describes the operations available on a single path
-type PathItem struct {
-	Ref         *string                `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Summary     *string                `json:"summary,omitempty" yaml:"summary,omitempty"`
-	Description *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Servers     []Server               `json:"servers,omitempty" yaml:"servers,omitempty"`
-	Parameters  []*ParameterRef        `json:"parameters,omitempty" yaml:"parameters,omitempty"`
-	Get         *Operation             `json:"get,omitempty" yaml:"get,omitempty"`
-	Put         *Operation             `json:"put,omitempty" yaml:"put,omitempty"`
-	Post        *Operation             `json:"post,omitempty" yaml:"post,omitempty"`
-	Delete      *Operation             `json:"delete,omitempty" yaml:"delete,omitempty"`
-	Options     *Operation             `json:"options,omitempty" yaml:"options,omitempty"`
-	Head        *Operation             `json:"head,omitempty" yaml:"head,omitempty"`
-	Patch       *Operation             `json:"patch,omitempty" yaml:"patch,omitempty"`
-	Trace       *Operation             `json:"trace,omitempty" yaml:"trace,omitempty"`
-	Extensions  map[string]interface{} `json:"-" yaml:",inline"`
+// Content - generated from $defs/content
+
+type Content struct {
+	AdditionalProperties map[string]MediaType   `json:"-"`
+	Extensions           map[string]interface{} `json:"-"`
 }
 
-// Operation describes a single API operation on a path
-type Operation struct {
-	Tags         []string                 `json:"tags,omitempty" yaml:"tags,omitempty"`
-	Summary      *string                  `json:"summary,omitempty" yaml:"summary,omitempty"`
-	Description  *string                  `json:"description,omitempty" yaml:"description,omitempty"`
-	ExternalDocs *ExternalDocumentation   `json:"externalDocs,omitempty" yaml:"externalDocs,omitempty"`
-	OperationID  *string                  `json:"operationId,omitempty" yaml:"operationId,omitempty"`
-	Parameters   []*ParameterRef          `json:"parameters,omitempty" yaml:"parameters,omitempty"`
-	RequestBody  *RequestBodyRef          `json:"requestBody,omitempty" yaml:"requestBody,omitempty"`
-	Responses    *Responses               `json:"responses,omitempty" yaml:"responses,omitempty"`
-	Callbacks    map[string]*CallbacksRef `json:"callbacks,omitempty" yaml:"callbacks,omitempty"`
-	Deprecated   *bool                    `json:"deprecated,omitempty" yaml:"deprecated,omitempty"`
-	Security     []SecurityRequirement    `json:"security,omitempty" yaml:"security,omitempty"`
-	Servers      []Server                 `json:"servers,omitempty" yaml:"servers,omitempty"`
-	Extensions   map[string]interface{}   `json:"-" yaml:",inline"`
-}
+// Encoding - generated from $defs/encoding
 
-// ExternalDocumentation allows referencing an external resource for extended documentation
-type ExternalDocumentation struct {
-	Description *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	URL         string                 `json:"url" yaml:"url"`
-	Extensions  map[string]interface{} `json:"-" yaml:",inline"`
-}
-
-// Parameter describes a single operation parameter
-type Parameter struct {
-	Name            string                 `json:"name" yaml:"name"`
-	In              string                 `json:"in" yaml:"in"` // "query", "header", "path", "cookie"
-	Description     *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Required        *bool                  `json:"required,omitempty" yaml:"required,omitempty"`
-	Deprecated      *bool                  `json:"deprecated,omitempty" yaml:"deprecated,omitempty"`
-	AllowEmptyValue *bool                  `json:"allowEmptyValue,omitempty" yaml:"allowEmptyValue,omitempty"`
-	Style           *string                `json:"style,omitempty" yaml:"style,omitempty"`
-	Explode         *bool                  `json:"explode,omitempty" yaml:"explode,omitempty"`
-	AllowReserved   *bool                  `json:"allowReserved,omitempty" yaml:"allowReserved,omitempty"`
-	Schema          *Schema                `json:"schema,omitempty" yaml:"schema,omitempty"`
-	Content         map[string]*MediaType  `json:"content,omitempty" yaml:"content,omitempty"`
-	Example         interface{}            `json:"example,omitempty" yaml:"example,omitempty"`
-	Examples        map[string]*ExampleRef `json:"examples,omitempty" yaml:"examples,omitempty"`
-	Extensions      map[string]interface{} `json:"-" yaml:",inline"`
-}
-
-// ParameterRef represents either a Parameter or a Reference
-type ParameterRef struct {
-	Ref   *string    `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *Parameter `json:"-" yaml:"-"`
-}
-
-// RequestBody describes a single request body
-type RequestBody struct {
-	Description *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Content     map[string]*MediaType  `json:"content" yaml:"content"`
-	Required    *bool                  `json:"required,omitempty" yaml:"required,omitempty"`
-	Extensions  map[string]interface{} `json:"-" yaml:",inline"`
-}
-
-// RequestBodyRef represents either a RequestBody or a Reference
-type RequestBodyRef struct {
-	Ref   *string      `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *RequestBody `json:"-" yaml:"-"`
-}
-
-// MediaType provides schema and examples for the media type identified by its key
-type MediaType struct {
-	Schema     *Schema                `json:"schema,omitempty" yaml:"schema,omitempty"`
-	Example    interface{}            `json:"example,omitempty" yaml:"example,omitempty"`
-	Examples   map[string]*ExampleRef `json:"examples,omitempty" yaml:"examples,omitempty"`
-	Encoding   map[string]*Encoding   `json:"encoding,omitempty" yaml:"encoding,omitempty"`
-	Extensions map[string]interface{} `json:"-" yaml:",inline"`
-}
-
-// Encoding defines encoding information for request body media types
 type Encoding struct {
-	ContentType   *string                `json:"contentType,omitempty" yaml:"contentType,omitempty"`
-	Headers       map[string]*HeaderRef  `json:"headers,omitempty" yaml:"headers,omitempty"`
-	Style         *string                `json:"style,omitempty" yaml:"style,omitempty"`
-	Explode       *bool                  `json:"explode,omitempty" yaml:"explode,omitempty"`
-	AllowReserved *bool                  `json:"allowReserved,omitempty" yaml:"allowReserved,omitempty"`
-	Extensions    map[string]interface{} `json:"-" yaml:",inline"`
+	Allowreserved *bool                        `json:"allowReserved,omitempty"`
+	Contenttype   *string                      `json:"contentType,omitempty"`
+	Explode       *bool                        `json:"explode,omitempty"`
+	Headers       map[string]HeaderOrReference `json:"headers,omitempty"`
+	Style         *string                      `json:"style,omitempty"`
+	Extensions    map[string]interface{}       `json:"-"`
 }
 
-// Responses is a container for the expected responses of an operation
-type Responses struct {
-	Default    *ResponseRef            `json:"default,omitempty" yaml:"default,omitempty"`
-	Responses  map[string]*ResponseRef `json:"-" yaml:",inline"`
-	Extensions map[string]interface{}  `json:"-" yaml:",inline"`
-}
+// Example - generated from $defs/example
 
-// Response describes a single response from an API Operation
-type Response struct {
-	Description string                 `json:"description" yaml:"description"`
-	Headers     map[string]*HeaderRef  `json:"headers,omitempty" yaml:"headers,omitempty"`
-	Content     map[string]*MediaType  `json:"content,omitempty" yaml:"content,omitempty"`
-	Links       map[string]*LinkRef    `json:"links,omitempty" yaml:"links,omitempty"`
-	Extensions  map[string]interface{} `json:"-" yaml:",inline"`
-}
-
-// ResponseRef represents either a Response or a Reference
-type ResponseRef struct {
-	Ref   *string   `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *Response `json:"-" yaml:"-"`
-}
-
-// Callbacks is a map of possible out-of band callbacks related to the parent operation
-type Callbacks map[string]*PathItem
-
-// CallbacksRef represents either Callbacks or a Reference
-type CallbacksRef struct {
-	Ref   *string    `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *Callbacks `json:"-" yaml:"-"`
-}
-
-// Example object
 type Example struct {
-	Summary       *string                `json:"summary,omitempty" yaml:"summary,omitempty"`
-	Description   *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Value         interface{}            `json:"value,omitempty" yaml:"value,omitempty"`
-	ExternalValue *string                `json:"externalValue,omitempty" yaml:"externalValue,omitempty"`
-	Extensions    map[string]interface{} `json:"-" yaml:",inline"`
+	Description   *string                `json:"description,omitempty"`
+	Externalvalue *string                `json:"externalValue,omitempty"`
+	Summary       *string                `json:"summary,omitempty"`
+	Value         interface{}            `json:"value,omitempty"`
+	Extensions    map[string]interface{} `json:"-"`
 }
 
-// ExampleRef represents either an Example or a Reference
-type ExampleRef struct {
-	Ref   *string  `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *Example `json:"-" yaml:"-"`
+// ExampleOrReference - fallback to interface{}
+
+type ExampleOrReference interface{}
+
+// Examples - generated from $defs/examples
+
+type Examples struct {
+	Example    interface{}                   `json:"example,omitempty"`
+	Examples   map[string]ExampleOrReference `json:"examples,omitempty"`
+	Extensions map[string]interface{}        `json:"-"`
 }
 
-// Link represents a possible design-time link for a response
-type Link struct {
-	OperationRef *string                `json:"operationRef,omitempty" yaml:"operationRef,omitempty"`
-	OperationID  *string                `json:"operationId,omitempty" yaml:"operationId,omitempty"`
-	Parameters   map[string]string      `json:"parameters,omitempty" yaml:"parameters,omitempty"`
-	RequestBody  interface{}            `json:"requestBody,omitempty" yaml:"requestBody,omitempty"`
-	Description  *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Server       *Server                `json:"server,omitempty" yaml:"server,omitempty"`
-	Extensions   map[string]interface{} `json:"-" yaml:",inline"`
+// ExternalDocumentation - generated from $defs/external-documentation
+
+type ExternalDocumentation struct {
+	Description *string                `json:"description,omitempty"`
+	Url         string                 `json:"url"`
+	Extensions  map[string]interface{} `json:"-"`
 }
 
-// LinkRef represents either a Link or a Reference
-type LinkRef struct {
-	Ref   *string `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *Link   `json:"-" yaml:"-"`
-}
+// Header - generated from $defs/header
 
-// Header represents a header parameter
 type Header struct {
-	Description *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Required    *bool                  `json:"required,omitempty" yaml:"required,omitempty"`
-	Deprecated  *bool                  `json:"deprecated,omitempty" yaml:"deprecated,omitempty"`
-	Style       *string                `json:"style,omitempty" yaml:"style,omitempty"`
-	Explode     *bool                  `json:"explode,omitempty" yaml:"explode,omitempty"`
-	Schema      *Schema                `json:"schema,omitempty" yaml:"schema,omitempty"`
-	Content     map[string]*MediaType  `json:"content,omitempty" yaml:"content,omitempty"`
-	Example     interface{}            `json:"example,omitempty" yaml:"example,omitempty"`
-	Examples    map[string]*ExampleRef `json:"examples,omitempty" yaml:"examples,omitempty"`
-	Extensions  map[string]interface{} `json:"-" yaml:",inline"`
+	Content     *Content               `json:"content,omitempty"`
+	Deprecated  *bool                  `json:"deprecated,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	Required    *bool                  `json:"required,omitempty"`
+	Schema      interface{}            `json:"schema,omitempty"`
+	Extensions  map[string]interface{} `json:"-"`
 }
 
-// HeaderRef represents either a Header or a Reference
-type HeaderRef struct {
-	Ref   *string `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *Header `json:"-" yaml:"-"`
+// HeaderOrReference - fallback to interface{}
+
+type HeaderOrReference interface{}
+
+// Info - generated from $defs/info
+
+type Info struct {
+	Contact        *Contact               `json:"contact,omitempty"`
+	Description    *string                `json:"description,omitempty"`
+	License        *License               `json:"license,omitempty"`
+	Summary        *string                `json:"summary,omitempty"`
+	Termsofservice *string                `json:"termsOfService,omitempty"`
+	Title          string                 `json:"title"`
+	Version        string                 `json:"version"`
+	Extensions     map[string]interface{} `json:"-"`
 }
 
-// Tag adds metadata to a single tag that is used by the Operation Object
-type Tag struct {
-	Name         string                 `json:"name" yaml:"name"`
-	Description  *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	ExternalDocs *ExternalDocumentation `json:"externalDocs,omitempty" yaml:"externalDocs,omitempty"`
-	Extensions   map[string]interface{} `json:"-" yaml:",inline"`
+// License - generated from $defs/license
+
+type License struct {
+	Identifier *string                `json:"identifier,omitempty"`
+	Name       string                 `json:"name"`
+	Url        *string                `json:"url,omitempty"`
+	Extensions map[string]interface{} `json:"-"`
 }
 
-// Reference represents a simple object to allow referencing other components
+// Link - generated from $defs/link
+
+type Link struct {
+	Body         *Server                `json:"body,omitempty"`
+	Description  *string                `json:"description,omitempty"`
+	Operationid  *string                `json:"operationId,omitempty"`
+	Operationref *string                `json:"operationRef,omitempty"`
+	Parameters   *MapOfStrings          `json:"parameters,omitempty"`
+	Requestbody  interface{}            `json:"requestBody,omitempty"`
+	Extensions   map[string]interface{} `json:"-"`
+}
+
+// LinkOrReference - fallback to interface{}
+
+type LinkOrReference interface{}
+
+// MapOfStrings - generated from $defs/map-of-strings
+
+type MapOfStrings struct {
+	AdditionalProperties map[string]string      `json:"-"`
+	Extensions           map[string]interface{} `json:"-"`
+}
+
+// MediaType - generated from $defs/media-type
+
+type MediaType struct {
+	Encoding   map[string]Encoding    `json:"encoding,omitempty"`
+	Schema     interface{}            `json:"schema,omitempty"`
+	Extensions map[string]interface{} `json:"-"`
+}
+
+// OauthFlows - generated from $defs/oauth-flows
+
+type OauthFlows struct {
+	Authorizationcode *OauthFlowsAuthorizationCode `json:"authorizationCode,omitempty"`
+	Clientcredentials *OauthFlowsClientCredentials `json:"clientCredentials,omitempty"`
+	Implicit          *OauthFlowsImplicit          `json:"implicit,omitempty"`
+	Password          *OauthFlowsPassword          `json:"password,omitempty"`
+	Extensions        map[string]interface{}       `json:"-"`
+}
+
+// OauthFlowsAuthorizationCode - generated from $defs/oauth-flows/$defs/authorization-code
+
+type OauthFlowsAuthorizationCode struct {
+	Authorizationurl string                 `json:"authorizationUrl"`
+	Refreshurl       *string                `json:"refreshUrl,omitempty"`
+	Scopes           MapOfStrings           `json:"scopes"`
+	Tokenurl         string                 `json:"tokenUrl"`
+	Extensions       map[string]interface{} `json:"-"`
+}
+
+// OauthFlowsClientCredentials - generated from $defs/oauth-flows/$defs/client-credentials
+
+type OauthFlowsClientCredentials struct {
+	Refreshurl *string                `json:"refreshUrl,omitempty"`
+	Scopes     MapOfStrings           `json:"scopes"`
+	Tokenurl   string                 `json:"tokenUrl"`
+	Extensions map[string]interface{} `json:"-"`
+}
+
+// OauthFlowsImplicit - generated from $defs/oauth-flows/$defs/implicit
+
+type OauthFlowsImplicit struct {
+	Authorizationurl string                 `json:"authorizationUrl"`
+	Refreshurl       *string                `json:"refreshUrl,omitempty"`
+	Scopes           MapOfStrings           `json:"scopes"`
+	Extensions       map[string]interface{} `json:"-"`
+}
+
+// OauthFlowsPassword - generated from $defs/oauth-flows/$defs/password
+
+type OauthFlowsPassword struct {
+	Refreshurl *string                `json:"refreshUrl,omitempty"`
+	Scopes     MapOfStrings           `json:"scopes"`
+	Tokenurl   string                 `json:"tokenUrl"`
+	Extensions map[string]interface{} `json:"-"`
+}
+
+// Operation - generated from $defs/operation
+
+type Operation struct {
+	Callbacks    map[string]CallbacksOrReference `json:"callbacks,omitempty"`
+	Deprecated   *bool                           `json:"deprecated,omitempty"`
+	Description  *string                         `json:"description,omitempty"`
+	Externaldocs *ExternalDocumentation          `json:"externalDocs,omitempty"`
+	Operationid  *string                         `json:"operationId,omitempty"`
+	Parameters   []ParameterOrReference          `json:"parameters,omitempty"`
+	Requestbody  *RequestBodyOrReference         `json:"requestBody,omitempty"`
+	Responses    *Responses                      `json:"responses,omitempty"`
+	Security     []SecurityRequirement           `json:"security,omitempty"`
+	Servers      []Server                        `json:"servers,omitempty"`
+	Summary      *string                         `json:"summary,omitempty"`
+	Tags         []string                        `json:"tags,omitempty"`
+	Extensions   map[string]interface{}          `json:"-"`
+}
+
+// Parameter - generated from $defs/parameter
+
+type Parameter struct {
+	Content     *Content               `json:"content,omitempty"`
+	Deprecated  *bool                  `json:"deprecated,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	In          string                 `json:"in"`
+	Name        string                 `json:"name"`
+	Required    *bool                  `json:"required,omitempty"`
+	Schema      interface{}            `json:"schema,omitempty"`
+	Extensions  map[string]interface{} `json:"-"`
+}
+
+// ParameterOrReference - fallback to interface{}
+
+type ParameterOrReference interface{}
+
+// PathItem - generated from $defs/path-item
+
+type PathItem struct {
+	Ref         *string                `json:"$ref,omitempty"`
+	Delete      *Operation             `json:"delete,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	Get         *Operation             `json:"get,omitempty"`
+	Head        *Operation             `json:"head,omitempty"`
+	Options     *Operation             `json:"options,omitempty"`
+	Parameters  []ParameterOrReference `json:"parameters,omitempty"`
+	Patch       *Operation             `json:"patch,omitempty"`
+	Post        *Operation             `json:"post,omitempty"`
+	Put         *Operation             `json:"put,omitempty"`
+	Servers     []Server               `json:"servers,omitempty"`
+	Summary     *string                `json:"summary,omitempty"`
+	Trace       *Operation             `json:"trace,omitempty"`
+	Extensions  map[string]interface{} `json:"-"`
+}
+
+// Paths - generated from $defs/paths
+
+type Paths struct {
+	Extensions map[string]interface{} `json:"-"`
+}
+
+// Reference - generated from $defs/reference
+
 type Reference struct {
-	Ref         string  `json:"$ref" yaml:"$ref"`
-	Summary     *string `json:"summary,omitempty" yaml:"summary,omitempty"`
-	Description *string `json:"description,omitempty" yaml:"description,omitempty"`
+	Ref         *string                `json:"$ref,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	Summary     *string                `json:"summary,omitempty"`
+	Extensions  map[string]interface{} `json:"-"`
 }
 
-// Schema represents a schema object (can be boolean or object in OpenAPI 3.1)
-type Schema struct {
-	// Core schema properties
-	Type        interface{}   `json:"type,omitempty" yaml:"type,omitempty"` // can be string or array of strings
-	Format      *string       `json:"format,omitempty" yaml:"format,omitempty"`
-	Title       *string       `json:"title,omitempty" yaml:"title,omitempty"`
-	Description *string       `json:"description,omitempty" yaml:"description,omitempty"`
-	Default     interface{}   `json:"default,omitempty" yaml:"default,omitempty"`
-	Example     interface{}   `json:"example,omitempty" yaml:"example,omitempty"`
-	Examples    []interface{} `json:"examples,omitempty" yaml:"examples,omitempty"`
+// RequestBody - generated from $defs/request-body
 
-	// Validation properties
-	MultipleOf       *float64      `json:"multipleOf,omitempty" yaml:"multipleOf,omitempty"`
-	Maximum          *float64      `json:"maximum,omitempty" yaml:"maximum,omitempty"`
-	ExclusiveMaximum interface{}   `json:"exclusiveMaximum,omitempty" yaml:"exclusiveMaximum,omitempty"`
-	Minimum          *float64      `json:"minimum,omitempty" yaml:"minimum,omitempty"`
-	ExclusiveMinimum interface{}   `json:"exclusiveMinimum,omitempty" yaml:"exclusiveMinimum,omitempty"`
-	MaxLength        *int          `json:"maxLength,omitempty" yaml:"maxLength,omitempty"`
-	MinLength        *int          `json:"minLength,omitempty" yaml:"minLength,omitempty"`
-	Pattern          *string       `json:"pattern,omitempty" yaml:"pattern,omitempty"`
-	MaxItems         *int          `json:"maxItems,omitempty" yaml:"maxItems,omitempty"`
-	MinItems         *int          `json:"minItems,omitempty" yaml:"minItems,omitempty"`
-	UniqueItems      *bool         `json:"uniqueItems,omitempty" yaml:"uniqueItems,omitempty"`
-	MaxProperties    *int          `json:"maxProperties,omitempty" yaml:"maxProperties,omitempty"`
-	MinProperties    *int          `json:"minProperties,omitempty" yaml:"minProperties,omitempty"`
-	Required         []string      `json:"required,omitempty" yaml:"required,omitempty"`
-	Enum             []interface{} `json:"enum,omitempty" yaml:"enum,omitempty"`
-
-	// Object properties
-	Properties           map[string]*Schema `json:"properties,omitempty" yaml:"properties,omitempty"`
-	AdditionalProperties interface{}        `json:"additionalProperties,omitempty" yaml:"additionalProperties,omitempty"`
-	PatternProperties    map[string]*Schema `json:"patternProperties,omitempty" yaml:"patternProperties,omitempty"`
-
-	// Array properties
-	Items       interface{} `json:"items,omitempty" yaml:"items,omitempty"`
-	PrefixItems []*Schema   `json:"prefixItems,omitempty" yaml:"prefixItems,omitempty"`
-	Contains    *Schema     `json:"contains,omitempty" yaml:"contains,omitempty"`
-
-	// Composition
-	AllOf []*Schema `json:"allOf,omitempty" yaml:"allOf,omitempty"`
-	OneOf []*Schema `json:"oneOf,omitempty" yaml:"oneOf,omitempty"`
-	AnyOf []*Schema `json:"anyOf,omitempty" yaml:"anyOf,omitempty"`
-	Not   *Schema   `json:"not,omitempty" yaml:"not,omitempty"`
-
-	// Conditional
-	If   *Schema `json:"if,omitempty" yaml:"if,omitempty"`
-	Then *Schema `json:"then,omitempty" yaml:"then,omitempty"`
-	Else *Schema `json:"else,omitempty" yaml:"else,omitempty"`
-
-	// OpenAPI specific
-	Discriminator *Discriminator         `json:"discriminator,omitempty" yaml:"discriminator,omitempty"`
-	XML           *XML                   `json:"xml,omitempty" yaml:"xml,omitempty"`
-	ExternalDocs  *ExternalDocumentation `json:"externalDocs,omitempty" yaml:"externalDocs,omitempty"`
-	Deprecated    *bool                  `json:"deprecated,omitempty" yaml:"deprecated,omitempty"`
-	ReadOnly      *bool                  `json:"readOnly,omitempty" yaml:"readOnly,omitempty"`
-	WriteOnly     *bool                  `json:"writeOnly,omitempty" yaml:"writeOnly,omitempty"`
-
-	// Extensions
-	Extensions map[string]interface{} `json:"-" yaml:",inline"`
+type RequestBody struct {
+	Content     Content                `json:"content"`
+	Description *string                `json:"description,omitempty"`
+	Required    *bool                  `json:"required,omitempty"`
+	Extensions  map[string]interface{} `json:"-"`
 }
 
-// Discriminator is used to differentiate between schemas
-type Discriminator struct {
-	PropertyName string                 `json:"propertyName" yaml:"propertyName"`
-	Mapping      map[string]string      `json:"mapping,omitempty" yaml:"mapping,omitempty"`
-	Extensions   map[string]interface{} `json:"-" yaml:",inline"`
+// RequestBodyOrReference - fallback to interface{}
+
+type RequestBodyOrReference interface{}
+
+// Response - generated from $defs/response
+
+type Response struct {
+	Content     *Content                     `json:"content,omitempty"`
+	Description string                       `json:"description"`
+	Headers     map[string]HeaderOrReference `json:"headers,omitempty"`
+	Links       map[string]LinkOrReference   `json:"links,omitempty"`
+	Extensions  map[string]interface{}       `json:"-"`
 }
 
-// XML provides additional metadata for XML serialization
-type XML struct {
-	Name       *string                `json:"name,omitempty" yaml:"name,omitempty"`
-	Namespace  *string                `json:"namespace,omitempty" yaml:"namespace,omitempty"`
-	Prefix     *string                `json:"prefix,omitempty" yaml:"prefix,omitempty"`
-	Attribute  *bool                  `json:"attribute,omitempty" yaml:"attribute,omitempty"`
-	Wrapped    *bool                  `json:"wrapped,omitempty" yaml:"wrapped,omitempty"`
-	Extensions map[string]interface{} `json:"-" yaml:",inline"`
+// ResponseOrReference - fallback to interface{}
+
+type ResponseOrReference interface{}
+
+// Responses - generated from $defs/responses
+
+type Responses struct {
+	Default    *ResponseOrReference   `json:"default,omitempty"`
+	Extensions map[string]interface{} `json:"-"`
 }
 
-// SecurityScheme defines a security scheme that can be used by the operations
+// Schema - fallback to interface{}
+
+type Schema interface{}
+
+// SecurityRequirement - generated from $defs/security-requirement
+
+type SecurityRequirement struct {
+	AdditionalProperties map[string][]string    `json:"-"`
+	Extensions           map[string]interface{} `json:"-"`
+}
+
+// SecurityScheme - generated from $defs/security-scheme
+
 type SecurityScheme struct {
-	Type             string                 `json:"type" yaml:"type"` // "apiKey", "http", "mutualTLS", "oauth2", "openIdConnect"
-	Description      *string                `json:"description,omitempty" yaml:"description,omitempty"`
-	Name             *string                `json:"name,omitempty" yaml:"name,omitempty"`
-	In               *string                `json:"in,omitempty" yaml:"in,omitempty"` // "query", "header", "cookie"
-	Scheme           *string                `json:"scheme,omitempty" yaml:"scheme,omitempty"`
-	BearerFormat     *string                `json:"bearerFormat,omitempty" yaml:"bearerFormat,omitempty"`
-	Flows            *OAuthFlows            `json:"flows,omitempty" yaml:"flows,omitempty"`
-	OpenIDConnectURL *string                `json:"openIdConnectUrl,omitempty" yaml:"openIdConnectUrl,omitempty"`
-	Extensions       map[string]interface{} `json:"-" yaml:",inline"`
+	Description *string                `json:"description,omitempty"`
+	Type        string                 `json:"type"`
+	Extensions  map[string]interface{} `json:"-"`
 }
 
-// SecuritySchemeRef represents either a SecurityScheme or a Reference
-type SecuritySchemeRef struct {
-	Ref   *string         `json:"$ref,omitempty" yaml:"$ref,omitempty"`
-	Value *SecurityScheme `json:"-" yaml:"-"`
+// SecuritySchemeOrReference - fallback to interface{}
+
+type SecuritySchemeOrReference interface{}
+
+// SecuritySchemeTypeApikey - fallback to interface{}
+
+type SecuritySchemeTypeApikey interface{}
+
+// SecuritySchemeTypeHttp - fallback to interface{}
+
+type SecuritySchemeTypeHttp interface{}
+
+// SecuritySchemeTypeHttpBearer - fallback to interface{}
+
+type SecuritySchemeTypeHttpBearer interface{}
+
+// SecuritySchemeTypeOauth2 - fallback to interface{}
+
+type SecuritySchemeTypeOauth2 interface{}
+
+// SecuritySchemeTypeOidc - fallback to interface{}
+
+type SecuritySchemeTypeOidc interface{}
+
+// Server - generated from $defs/server
+
+type Server struct {
+	Description *string                   `json:"description,omitempty"`
+	Url         string                    `json:"url"`
+	Variables   map[string]ServerVariable `json:"variables,omitempty"`
+	Extensions  map[string]interface{}    `json:"-"`
 }
 
-// OAuthFlows allows configuration of the supported OAuth Flows
-type OAuthFlows struct {
-	Implicit          *OAuthFlow             `json:"implicit,omitempty" yaml:"implicit,omitempty"`
-	Password          *OAuthFlow             `json:"password,omitempty" yaml:"password,omitempty"`
-	ClientCredentials *OAuthFlow             `json:"clientCredentials,omitempty" yaml:"clientCredentials,omitempty"`
-	AuthorizationCode *OAuthFlow             `json:"authorizationCode,omitempty" yaml:"authorizationCode,omitempty"`
-	Extensions        map[string]interface{} `json:"-" yaml:",inline"`
+// ServerVariable - generated from $defs/server-variable
+
+type ServerVariable struct {
+	Default     string                 `json:"default"`
+	Description *string                `json:"description,omitempty"`
+	Enum        []string               `json:"enum,omitempty"`
+	Extensions  map[string]interface{} `json:"-"`
 }
 
-// OAuthFlow configuration details for a supported OAuth Flow
-type OAuthFlow struct {
-	AuthorizationURL *string                `json:"authorizationUrl,omitempty" yaml:"authorizationUrl,omitempty"`
-	TokenURL         *string                `json:"tokenUrl,omitempty" yaml:"tokenUrl,omitempty"`
-	RefreshURL       *string                `json:"refreshUrl,omitempty" yaml:"refreshUrl,omitempty"`
-	Scopes           map[string]string      `json:"scopes" yaml:"scopes"`
-	Extensions       map[string]interface{} `json:"-" yaml:",inline"`
-}
+// SpecificationExtensions - fallback to interface{}
 
-// SecurityRequirement lists the required security schemes to execute this operation
-type SecurityRequirement map[string][]string
+type SpecificationExtensions interface{}
+
+// StylesForForm - fallback to interface{}
+
+type StylesForForm interface{}
+
+// Tag - generated from $defs/tag
+
+type Tag struct {
+	Description  *string                `json:"description,omitempty"`
+	Externaldocs *ExternalDocumentation `json:"externalDocs,omitempty"`
+	Name         string                 `json:"name"`
+	Extensions   map[string]interface{} `json:"-"`
+}
